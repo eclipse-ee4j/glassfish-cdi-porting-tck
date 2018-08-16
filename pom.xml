@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.eclipse.ee4j</groupId>
+        <artifactId>project</artifactId>
+        <version>1.0.1</version>
+    </parent>
+    <groupId>org.glassfish.cdi</groupId>
+    <artifactId>gf-cdi-porting-package-tck11</artifactId>
+    <version>2.1-SNAPSHOT</version>
+    
+    <name>GlassFish Porting Package for the CDI TCK 1.1</name>
+    
+    <description>Porting source to glue CDI TCK to GlassFish.</description>
+    <url>https://projects.eclipse.org/projects/ee4j.glassfish</url>
+
+     <contributors>
+        <contributor>
+            <name>Mason Taube</name>
+        </contributor>
+    </contributors>
+    
+    <developers>
+        <developer>
+            <id>yaminikb</id>
+            <name>Yamini K B</name>
+            <organization>Oracle Corporation</organization>
+            <organizationUrl>http://www.oracle.com</organizationUrl>
+        </developer>
+    </developers>
+
+    <licenses>
+        <license>
+            <name>EPL 2.0</name>
+            <url>http://www.eclipse.org/legal/epl-2.0</url>
+            <distribution>repo</distribution>
+        </license>
+        <license>
+            <name>GPL2 w/ CPE</name>
+            <url>https://www.gnu.org/software/classpath/license.html</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <issueManagement>
+        <system>github</system>
+        <url>https://github.com/eclipse-ee4j/glassfish-cdi-porting-tck/issues</url>
+    </issueManagement>
+    <mailingLists>
+        <mailingList>
+          <name>JSTL dev mailing list</name>
+          <post>glassfish-dev@eclipse.org</post>
+          <subscribe>https://dev.eclipse.org/mailman/listinfo/glassfish-dev</subscribe>
+          <unsubscribe>https://dev.eclipse.org/mailman/listinfo/glassfish-dev</unsubscribe>
+          <archive>https://dev.eclipse.org/mhonarc/lists/glassfish-dev</archive>
+        </mailingList>
+    </mailingLists> 
+    <scm>
+        <connection>scm:git:https://github.com/eclipse-ee4j/glassfish-cdi-porting-tck.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/eclipse-ee4j/glassfish-cdi-porting-tck.git</developerConnection>
+        <url>https://github.com/eclipse-ee4j/glassfish-cdi-porting-tck</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <properties>
+        <javax.el.version>3.0-b08</javax.el.version>
+        <cdi.api.version>1.2</cdi.api.version>
+        <cdi.tck.version>2.0.0.Final</cdi.tck.version>
+        <weld.version>3.0.0.Final</weld.version>
+    </properties>
+    
+    <dependencies>
+        <dependency>
+            <groupId>org.jboss.weld</groupId>
+            <artifactId>weld-osgi-bundle</artifactId>
+            <version>${weld.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.cdi.tck</groupId>
+            <artifactId>cdi-tck-api</artifactId>
+            <version>${cdi.tck.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.el</groupId>
+            <artifactId>javax.el-api</artifactId>
+            <version>${javax.el.version}</version>
+        </dependency>
+    </dependencies>
+    
+    <build>
+        <defaultGoal>install</defaultGoal>
+        <finalName>${project.artifactId}</finalName>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>2.5</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>2.5.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>2.4</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>2.5.1</version>
+                    <configuration>
+                        <mavenExecutorId>forked-path</mavenExecutorId>
+                        <arguments>-Prelease</arguments>
+                        <goals>deploy</goals>
+                        <waitBeforeTagging>10</waitBeforeTagging>
+                        <providerImplementations>
+                            <svn>jgit</svn>
+                        </providerImplementations>
+                    </configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.google.code.maven-scm-provider-svnjava</groupId>
+                            <artifactId>maven-scm-provider-svnjava</artifactId>
+                            <version>2.0.5</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+		</plugins>
+        </pluginManagement>
+    </build>    
+
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>2.2.1</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>2.9</version>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.4</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>                    
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-enforcer-plugin</artifactId>
+                        <version>1.1</version>
+                        <executions>
+                            <execution>
+                                <id>enforce-versions</id>
+                                <goals>
+                                    <goal>enforce</goal>
+                                </goals>
+                                <configuration>
+                                    <rules>
+                                        <requireMavenVersion>
+                                            <version>[3.0.4,)</version>
+                                            <message>You need Maven 3.0.4 or above!</message>
+                                        </requireMavenVersion>
+                                    </rules>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>                    
+                </plugins>
+            </build>
+        </profile>
+    </profiles>    
+</project>
