@@ -23,7 +23,7 @@
     <parent>
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
-        <version>1.0.2</version>
+        <version>1.0.5</version>
     </parent>
     <groupId>org.glassfish.cdi</groupId>
     <artifactId>gf-cdi-porting-package-tck11</artifactId>
@@ -145,8 +145,8 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
                    <version>3.0.1</version>
-                </plugin>  
-	    </plugins>
+                </plugin>
+		</plugins>
         </pluginManagement>
     </build>    
 </project>
