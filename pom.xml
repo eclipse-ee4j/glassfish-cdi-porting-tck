@@ -27,7 +27,7 @@
     </parent>
     <groupId>org.glassfish.cdi</groupId>
     <artifactId>gf-cdi-porting-package-tck11</artifactId>
-    <version>2.1-SNAPSHOT</version>
+    <version>3.0</version>
     
     <name>GlassFish Porting Package for the CDI TCK 1.1</name>
     
@@ -82,10 +82,10 @@
     </scm>
 
     <properties>
-        <javax.el.version>3.0-b08</javax.el.version>
-        <cdi.api.version>1.2</cdi.api.version>
-        <cdi.tck.version>2.0.0.Final</cdi.tck.version>
-        <weld.version>3.0.0.Final</weld.version>
+        <jakarta.el.version>4.0.0-RC2</jakarta.el.version>
+        <cdi-api.version>3.0.0-M3</cdi-api.version>
+        <cdi.tck.version>3.0.0-M3</cdi.tck.version>
+        <weld.version>4.0.0.Alpha3</weld.version>
     </properties>
     
     <dependencies>
@@ -95,14 +95,14 @@
             <version>${weld.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.jboss.cdi.tck</groupId>
+            <groupId>jakarta.enterprise</groupId>
             <artifactId>cdi-tck-api</artifactId>
             <version>${cdi.tck.version}</version>
         </dependency>
         <dependency>
-            <groupId>javax.el</groupId>
-            <artifactId>javax.el-api</artifactId>
-            <version>${javax.el.version}</version>
+            <groupId>jakarta.el</groupId>
+            <artifactId>jakarta.el-api</artifactId>
+            <version>${jakarta.el.version}</version>
         </dependency>
     </dependencies>
     
