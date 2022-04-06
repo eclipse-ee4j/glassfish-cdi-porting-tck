@@ -23,13 +23,13 @@
     <parent>
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
-        <version>1.0.6</version>
+        <version>1.0.7</version>
     </parent>
     <groupId>org.glassfish.cdi</groupId>
-    <artifactId>gf-cdi-porting-package-tck11</artifactId>
-    <version>3.0</version>
+    <artifactId>gf-cdi-porting-package-tck</artifactId>
+    <version>4.0</version>
     
-    <name>GlassFish Porting Package for the CDI TCK 1.1</name>
+    <name>GlassFish Porting Package for the CDI TCK 4.0</name>
     
     <description>Porting source to glue CDI TCK to GlassFish.</description>
     <url>https://projects.eclipse.org/projects/ee4j.glassfish</url>
@@ -82,11 +82,23 @@
     </scm>
 
     <properties>
-        <jakarta.el.version>4.0.0-RC2</jakarta.el.version>
-        <cdi-api.version>3.0.0-M3</cdi-api.version>
-        <cdi.tck.version>3.0.0-M3</cdi.tck.version>
-        <weld.version>4.0.0.Alpha3</weld.version>
+        <jakarta.el.version>5.0.0</jakarta.el.version>
+        <cdi-api.version>4.0.0</cdi-api.version>
+        <cdi.tck.version>4.0.0</cdi.tck.version>
+        <weld.version>5.0.0.CR2</weld.version>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
     </properties>
+
+    <!-- TODO: Temporarily enable snapshot repository -->
+    <!-- This can be removed once an official releases available -->
+    <repositories>
+        <repository>
+            <id>jakarta-snapshots</id>
+            <url>https://jakarta.oss.sonatype.org/content/repositories/staging/</url>
+        </repository>
+    </repositories>
+
     
     <dependencies>
         <dependency>
