@@ -101,7 +101,7 @@ spec:
       steps {
         container('build-container') {
           timeout(time: 10, unit: 'MINUTES') {
-            sh 'mvn clean install'
+            sh 'mvn clean verify -Dincontainer -Dcdi.tck-4-0.version=4.0.5 -Dmaven.test.failure.ignore=true'
             junit testResults: '**/target/surefire-reports/*.xml', allowEmptyResults: true
           }
         }
